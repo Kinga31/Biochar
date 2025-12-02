@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landing Page BioChar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f0f4f2;
+      --text-color: #2a2a2a;
+      --header-bg: linear-gradient(135deg, #0b6623, #0f7d2e);
+      --card-bg: rgba(255,255,255,0.9);
+      --btn-bg: #ffffff;
+      --btn-color: #0b6623;
+      --footer-bg: #0b6623;
+      --primary-green: #0b6623;
+      --light-green: #a2d5a2;
+      --mvola-green: #00a859;
+      --free-delivery-color: #ff6b00;
+    }
+
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --header-bg: linear-gradient(135deg, #1b1b1b, #2b2b2b);
+      --card-bg: rgba(30,30,30,0.85);
+      --btn-bg: #2b2b2b;
+      --btn-color: #a2d5a2;
+      --footer-bg: #1b1b1b;
+      --mvola-green: #00c96d;
+      --free-delivery-color: #ff8c42;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", Arial, sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s, color 0.3s;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    header {
+      padding: 80px 20px;
+      background: var(--header-bg);
+      color: #fff;
+      text-align: center;
+      background-attachment: fixed;
+    }
+
+    header img.logo {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+
+    header h1, header p, .btn {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s forwards;
+    }
+
+    header p { animation-delay: 0.5s; }
+    .btn { animation-delay: 1s; }
+
+    h1 { font-size: 2.5rem; margin-bottom: 15px; }
+    p { font-size: 1.2rem; max-width: 700px; margin: auto; margin-bottom: 25px; }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background: var(--btn-bg);
+      color: var(--btn-color);
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 12px;
+      margin: 5px;
+      transition: transform 0.3s, background 0.3s, color 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      background: var(--btn-color);
+      color: var(--btn-bg);
+    }
+
+    .btn-primary {
+      background: var(--primary-green);
+      color: white;
+    }
+
+    .btn-danger {
+      background: #ff4444;
+      color: white;
+    }
+
+    .btn-success {
+      background: #00a859;
+      color: white;
+    }
+
+    section {
+      padding: 70px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 { 
+      font-size: 2rem; 
+      margin-bottom: 30px; 
+      color: var(--primary-green); 
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s forwards;
+    }
+    
+    body.dark h2 { color: var(--light-green); }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      text-align: left;
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+
+    #toggle-dark {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      background: var(--btn-bg);
+      color: var(--btn-color);
+      border: 2px solid var(--btn-bg);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    #toggle-dark:hover {
+      background: var(--btn-color);
+      color: var(--btn-bg);
+      border-color: var(--btn-color);
+    }
+
+    footer {
+      background: var(--footer-bg);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--light-green);
+      text-decoration: underline;
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 20px;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .quantity-btn {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: var(--btn-color);
+      color: var(--btn-bg);
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .quantity-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .quantity-input {
+      width: 60px;
+      text-align: center;
+      padding: 8px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      background: var(--card-bg);
+      color: var(--text-color);
+      font-weight: 600;
+      transition: border-color 0.3s;
+    }
+
+    .quantity-input:focus {
+      border-color: var(--primary-green);
+      outline: none;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      animation: slideIn 0.3s ease-out;
+    }
+
+    .order-item-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .remove-item {
+      color: #ff4444;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: transform 0.3s;
+    }
+
+    .remove-item:hover {
+      transform: scale(1.2);
+    }
+
+    .payment-methods {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .payment-method {
+      text-align: center;
+      padding: 15px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.1);
+      transition: transform 0.3s;
+      min-width: 120px;
+    }
+
+    .payment-method:hover {
+      transform: translateY(-5px);
+    }
+
+    .payment-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      margin: 0 auto 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .airtel-icon {
+      background: linear-gradient(135deg, #ff0000, #ff6666);
+    }
+
+    .orange-icon {
+      background: linear-gradient(135deg, #ff6600, #ff9966);
+    }
+
+    .mvola-icon {
+      background: linear-gradient(135deg, var(--mvola-green), #00e676);
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .hidden {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+
+    .visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delivery-option {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(11, 102, 35, 0.1);
+      border-radius: 8px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .delivery-option:hover {
+      background: rgba(11, 102, 35, 0.2);
+    }
+
+    .delivery-checkbox {
+      margin-right: 10px;
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+
+    .order-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .cart-badge {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: var(--primary-green);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .cart-badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .cart-badge.hidden {
+      display: none;
+    }
+
+    .cart-count {
+      background: white;
+      color: var(--primary-green);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+    }
+
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary-green);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      z-index: 1001;
+      animation: slideIn 0.3s ease-out;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .notification-success {
+      background: #00a859;
+    }
+
+    .notification-error {
+      background: #ff4444;
+    }
+
+    .notification-warning {
+      background: var(--free-delivery-color);
+    }
+
+    .empty-cart-message {
+      text-align: center;
+      padding: 30px;
+      color: #666;
+    }
+
+    .empty-cart-message i {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .free-delivery-banner {
+      background: linear-gradient(135deg, var(--free-delivery-color), #ff8c42);
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      margin: 20px 0;
+      animation: pulse 2s infinite;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+    }
+
+    .free-delivery-achieved {
+      background: linear-gradient(135deg, #00a859, #00e676);
+      animation: none;
+    }
+
+    .free-delivery-progress {
+      margin: 10px 0;
+      background: rgba(255,255,255,0.3);
+      border-radius: 10px;
+      overflow: hidden;
+      height: 10px;
+    }
+
+    .free-delivery-progress-bar {
+      height: 100%;
+      background: white;
+      border-radius: 10px;
+      transition: width 0.5s ease;
+    }
+
+    .free-delivery-text {
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+
+    .free-delivery-icon {
+      display: inline-block;
+      margin-right: 8px;
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .delivery-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    .delivery-free {
+      color: #00a859;
+      font-weight: bold;
+    }
+
+    .delivery-paid {
+      color: #666;
+    }
+
+    body.dark .delivery-paid {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+<button id="toggle-dark">Mode Nuit</button>
+
+<div class="cart-badge hidden" id="cart-badge">
+  🛒 Panier <span class="cart-count" id="cart-count">0</span>
+</div>
+
+<main>
+<header>
+  <img src="logo.png" alt="Logo BioChar" class="logo" />
+  <h1>BioChar — Producteur de Charbon Écologique</h1>
+  <p>Une solution innovante et écologique pour produire un charbon durable fondée par ANDRIANTSOA H. Antonio</p>
+  <a href="apropos.html" class="btn">À propos</a>
+</header>
+
+<section>
+  <h2>Pourquoi choisir BioChar ?</h2>
+  <p>BioChar propose un charbon écologique, performant et respectueux de l'environnement, produit localement avec une méthode durable.</p>
+  <div class="free-delivery-banner hidden" id="free-delivery-banner">
+    <div class="free-delivery-icon">🚚</div>
+    <strong>LIVRAISON GRATUITE</strong> à partir de 100 000 Ar d'achat !
+    <div class="free-delivery-progress">
+      <div class="free-delivery-progress-bar" id="delivery-progress-bar"></div>
+    </div>
+    <div class="free-delivery-text" id="free-delivery-text">
+      Ajoutez encore <span id="remaining-amount">100 000</span> Ar pour bénéficier de la livraison gratuite
+    </div>
+  </div>
+</section>
+
+<section id="products">
+  <h2>Nos Produits</h2>
+  <div class="cards-grid" id="products-grid">
+    <div class="card hidden">
+      <p><strong>Charbon en vrac — 2 000 Ar / kg</strong><br>Un charbon puissant, économique et idéal pour les usages quotidiens.</p>
+      <div class="quantity-controls">
+        <button class="quantity-btn decrease" data-product="charbon-vrac">-</button>
+        <input type="number" class="quantity-input" id="charbon-vrac-qty" value="0" min="0" data-price="2000" data-product="Charbon en vrac">
+        <button class="quantity-btn increase" data-product="charbon-vrac">+</button>
+        <span>kg</span>
+      </div>
+      <button class="btn btn-primary add-to-cart" data-product="Charbon en vrac" data-price="2000" data-unit="kg">Ajouter au panier</button>
+    </div>
+    <div class="card hidden">
+      <p><strong>Sac de charbon 15 kg — 20 000 Ar / sac</strong><br>Un excellent rapport qualité/prix pour une utilisation prolongée.</p>
+      <div class="quantity-controls">
+        <button class="quantity-btn decrease" data-product="sac-15kg">-</button>
+        <input type="number" class="quantity-input" id="sac-15kg-qty" value="0" min="0" data-price="20000" data-product="Sac de charbon 15kg">
+        <button class="quantity-btn increase" data-product="sac-15kg">+</button>
+        <span>sac(s)</span>
+      </div>
+      <button class="btn btn-primary add-to-cart" data-product="Sac de charbon 15kg" data-price="20000" data-unit="sac">Ajouter au panier</button>
+    </div>
+  </div>
+</section>
+
+<section id="order-section" style="display: none;">
+  <h2>Votre Commande</h2>
+  <div class="card" id="order-summary">
+    <p><strong>Récapitulatif de commande</strong></p>
+    <div id="order-items" class="empty-cart-message">
+      <div>🛒</div>
+      <p>Votre panier est vide</p>
+    </div>
+    
+    <div id="delivery-info-container"></div>
+    
+    <div id="total-section">
+      <p id="subtotal-price"><strong>Sous-total : 0 Ar</strong></p>
+      <p id="delivery-price" style="display: none;"></p>
+      <div class="delivery-info" id="delivery-info"></div>
+      <p id="total-price"><strong>Total : 0 Ar</strong></p>
+    </div>
+    
+    <div class="order-actions">
+      <button class="btn btn-success" id="confirm-order">Confirmer la commande</button>
+      <button class="btn btn-danger" id="clear-cart">Vider le panier</button>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Paiement Mobile Money</h2>
+  <div class="cards-grid">
+    <div class="card hidden">
+      <p><strong>Méthodes disponibles :</strong></p>
+      <div class="payment-methods">
+        <div class="payment-method">
+          <div class="payment-icon airtel-icon">A</div>
+          <p>Airtel Money</p>
+        </div>
+        <div class="payment-method">
+          <div class="payment-icon orange-icon">O</div>
+          <p>Orange Money</p>
+        </div>
+        <div class="payment-method">
+          <div class="payment-icon mvola-icon">M</div>
+          <p>Mvola</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="index.html">Accueil</a>
+      <a href="apropos.html">À propos</a>
+      <a href="#" id="contact-link">Contact</a>
+      <a href="#" id="faq-link">FAQ</a>
+    </div>
+    <div class="copyright">
+      &copy; <span id="current-year"></span> BioChar - Producteur de Charbon Écologique. Tous droits réservés.<br>
+      Fondé par ANDRIANTSOA H. Antonio
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ========== CONFIGURATION ==========
+  const CONFIG = {
+    deliveryPrice: 15000,
+    freeDeliveryThreshold: 100000,
+    products: {
+      'Charbon en vrac': { price: 2000, unit: 'kg' },
+      'Sac de charbon 15kg': { price: 20000, unit: 'sac' }
+    }
+  };
+
+  // ========== ÉTAT DE L'APPLICATION ==========
+  let cart = [];
+  let isDarkMode = localStorage.getItem("dark-mode") === "on";
+
+  // ========== RÉFÉRENCES AUX ÉLÉMENTS DOM ==========
+  const elements = {
+    toggleDark: document.getElementById('toggle-dark'),
+    cartBadge: document.getElementById('cart-badge'),
+    cartCount: document.getElementById('cart-count'),
+    orderSection: document.getElementById('order-section'),
+    orderItems: document.getElementById('order-items'),
+    subtotalPrice: document.getElementById('subtotal-price'),
+    deliveryPrice: document.getElementById('delivery-price'),
+    totalPrice: document.getElementById('total-price'),
+    deliveryInfo: document.getElementById('delivery-info'),
+    deliveryInfoContainer: document.getElementById('delivery-info-container'),
+    confirmOrderBtn: document.getElementById('confirm-order'),
+    clearCartBtn: document.getElementById('clear-cart'),
+    currentYear: document.getElementById('current-year'),
+    freeDeliveryBanner: document.getElementById('free-delivery-banner'),
+    deliveryProgressBar: document.getElementById('delivery-progress-bar'),
+    freeDeliveryText: document.getElementById('free-delivery-text'),
+    remainingAmount: document.getElementById('remaining-amount')
+  };
+
+  // ========== INITIALISATION ==========
+  function initializeApp() {
+    setupDarkMode();
+    setupEventListeners();
+    setupIntersectionObserver();
+    loadCartFromStorage();
+    updateCurrentYear();
+    animateCards();
+    updateFreeDeliveryBanner();
+  }
+
+  // ========== MODE NUIT ==========
+  function setupDarkMode() {
+    if (isDarkMode) {
+      document.body.classList.add("dark");
+      elements.toggleDark.textContent = 'Mode Jour';
+    }
+
+    elements.toggleDark.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      isDarkMode = !isDarkMode;
+      localStorage.setItem('dark-mode', isDarkMode ? 'on' : 'off');
+      elements.toggleDark.textContent = isDarkMode ? 'Mode Jour' : 'Mode Nuit';
+    });
+  }
+
+  // ========== GESTION DU PANIER ==========
+  function addToCart(productName, quantity) {
+    if (quantity <= 0) {
+      showNotification('Veuillez spécifier une quantité', 'error');
+      return false;
+    }
+
+    const productConfig = CONFIG.products[productName];
+    if (!productConfig) return false;
+
+    const existingItemIndex = cart.findIndex(item => item.product === productName);
+    
+    if (existingItemIndex > -1) {
+      cart[existingItemIndex].quantity += quantity;
+      cart[existingItemIndex].total = cart[existingItemIndex].quantity * productConfig.price;
+    } else {
+      cart.push({
+        product: productName,
+        price: productConfig.price,
+        unit: productConfig.unit,
+        quantity: quantity,
+        total: quantity * productConfig.price
+      });
+    }
+
+    updateCartUI();
+    saveCartToStorage();
+    showNotification(`${quantity} ${productConfig.unit}(s) de ${productName} ajouté(s) au panier!`, 'success');
+    updateFreeDeliveryBanner();
+    return true;
+  }
+
+  function removeFromCart(index) {
+    if (index >= 0 && index < cart.length) {
+      cart.splice(index, 1);
+      updateCartUI();
+      saveCartToStorage();
+      updateFreeDeliveryBanner();
+    }
+  }
+
+  function clearCart() {
+    if (cart.length === 0) return;
+    
+    if (confirm('Voulez-vous vraiment vider votre panier ?')) {
+      cart = [];
+      updateCartUI();
+      saveCartToStorage();
+      updateFreeDeliveryBanner();
+      showNotification('Panier vidé', 'success');
+    }
+  }
+
+  function calculateTotals() {
+    const subtotal = cart.reduce((sum, item) => sum + item.total, 0);
+    const hasFreeDelivery = subtotal >= CONFIG.freeDeliveryThreshold;
+    const delivery = hasFreeDelivery ? 0 : CONFIG.deliveryPrice;
+    const total = subtotal + delivery;
+    
+    return { subtotal, delivery, total, hasFreeDelivery };
+  }
+
+  function updateCartUI() {
+    updateCartBadge();
+    updateOrderSummary();
+    toggleOrderSection();
+    updateFreeDeliveryBanner();
+  }
+
+  function updateCartBadge() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    elements.cartCount.textContent = totalItems;
+    
+    if (totalItems > 0) {
+      elements.cartBadge.classList.remove('hidden');
+    } else {
+      elements.cartBadge.classList.add('hidden');
+    }
+  }
+
+  function updateOrderSummary() {
+    const { subtotal, delivery, total, hasFreeDelivery } = calculateTotals();
+    
+    if (cart.length === 0) {
+      elements.orderItems.innerHTML = `
+        <div>🛒</div>
+        <p>Votre panier est vide</p>
+      `;
+      elements.orderItems.className = 'empty-cart-message';
+      elements.deliveryInfoContainer.innerHTML = '';
+    } else {
+      elements.orderItems.innerHTML = '';
+      elements.orderItems.className = '';
+      
+      cart.forEach((item, index) => {
+        const itemElement = document.createElement('div');
+        itemElement.className = 'order-item';
+        itemElement.innerHTML = `
+          <div>
+            <strong>${item.product}</strong><br>
+            <small>${item.price.toLocaleString()} Ar / ${item.unit} × ${item.quantity}</small>
+          </div>
+          <div class="order-item-controls">
+            <span>${item.total.toLocaleString()} Ar</span>
+            <button class="remove-item" data-index="${index}" title="Supprimer">🗑️</button>
+          </div>
+        `;
+        elements.orderItems.appendChild(itemElement);
+      });
+      
+      // Mise à jour des informations de livraison
+      updateDeliveryInfo(hasFreeDelivery, delivery, subtotal);
+    }
+    
+    elements.subtotalPrice.innerHTML = `<strong>Sous-total : ${subtotal.toLocaleString()} Ar</strong>`;
+    
+    if (delivery > 0) {
+      elements.deliveryPrice.style.display = 'block';
+      elements.deliveryPrice.innerHTML = `<strong>Livraison : ${delivery.toLocaleString()} Ar</strong>`;
+    } else {
+      elements.deliveryPrice.style.display = 'none';
+    }
+    
+    elements.totalPrice.innerHTML = `<strong>Total : ${total.toLocaleString()} Ar</strong>`;
+  }
+
+  function updateDeliveryInfo(hasFreeDelivery, delivery, subtotal) {
+    elements.deliveryInfoContainer.innerHTML = '';
+    
+    const deliveryCard = document.createElement('div');
+    deliveryCard.className = 'delivery-option';
+    
+    if (hasFreeDelivery) {
+      deliveryCard.innerHTML = `
+        <div style="color: #00a859; font-weight: bold;">
+          🎉 FÉLICITATIONS ! 🎉
+        </div>
+        <p><strong>Livraison gratuite activée !</strong></p>
+        <p>Votre commande de ${subtotal.toLocaleString()} Ar dépasse le seuil de ${CONFIG.freeDeliveryThreshold.toLocaleString()} Ar</p>
+      `;
+      deliveryCard.style.background = 'rgba(0, 168, 89, 0.1)';
+    } else {
+      const remaining = CONFIG.freeDeliveryThreshold - subtotal;
+      const progress = Math.min((subtotal / CONFIG.freeDeliveryThreshold) * 100, 100);
+      
+      deliveryCard.innerHTML = `
+        <label>
+          <input type="checkbox" id="delivery-checkbox" class="delivery-checkbox" checked disabled>
+          <strong>Livraison à domicile — ${CONFIG.deliveryPrice.toLocaleString()} Ar</strong><br>
+          <small>Livraison rapide directement chez vous à Mahajanga</small>
+        </label>
+        <div style="margin-top: 15px;">
+          <p><strong>Livraison gratuite à partir de ${CONFIG.freeDeliveryThreshold.toLocaleString()} Ar</strong></p>
+          <div style="background: rgba(0,0,0,0.1); border-radius: 10px; overflow: hidden; height: 10px; margin: 10px 0;">
+            <div style="height: 100%; background: var(--free-delivery-color); width: ${progress}%; border-radius: 10px; transition: width 0.5s;"></div>
+          </div>
+          <p style="font-size: 0.9rem;">
+            Ajoutez encore <strong>${remaining.toLocaleString()} Ar</strong> pour bénéficier de la livraison gratuite
+          </p>
+        </div>
+      `;
+    }
+    
+    elements.deliveryInfoContainer.appendChild(deliveryCard);
+  }
+
+  function toggleOrderSection() {
+    elements.orderSection.style.display = cart.length > 0 ? 'block' : 'none';
+  }
+
+  // ========== BANNIÈRE LIVRAISON GRATUITE ==========
+  function updateFreeDeliveryBanner() {
+    const subtotal = cart.reduce((sum, item) => sum + item.total, 0);
+    const hasFreeDelivery = subtotal >= CONFIG.freeDeliveryThreshold;
+    const progress = Math.min((subtotal / CONFIG.freeDeliveryThreshold) * 100, 100);
+    const remaining = Math.max(CONFIG.freeDeliveryThreshold - subtotal, 0);
+    
+    // Afficher ou cacher la bannière
+    if (subtotal > 0) {
+      elements.freeDeliveryBanner.classList.remove('hidden');
+      
+      if (hasFreeDelivery) {
+        elements.freeDeliveryBanner.classList.add('free-delivery-achieved');
+        elements.freeDeliveryBanner.innerHTML = `
+          <div class="free-delivery-icon">🎉</div>
+          <strong>FÉLICITATIONS !</strong> Vous bénéficiez de la <strong>LIVRAISON GRATUITE</strong><br>
+          <div class="free-delivery-text">
+            Votre commande de ${subtotal.toLocaleString()} Ar dépasse le seuil de ${CONFIG.freeDeliveryThreshold.toLocaleString()} Ar
+          </div>
+        `;
+      } else {
+        elements.freeDeliveryBanner.classList.remove('free-delivery-achieved');
+        elements.freeDeliveryBanner.innerHTML = `
+          <div class="free-delivery-icon">🚚</div>
+          <strong>LIVRAISON GRATUITE</strong> à partir de ${CONFIG.freeDeliveryThreshold.toLocaleString()} Ar !
+          <div class="free-delivery-progress">
+            <div class="free-delivery-progress-bar" style="width: ${progress}%"></div>
+          </div>
+          <div class="free-delivery-text">
+            Ajoutez encore <span id="remaining-amount">${remaining.toLocaleString()}</span> Ar pour bénéficier de la livraison gratuite
+          </div>
+        `;
+      }
+      
+      // Mettre à jour la barre de progression
+      elements.deliveryProgressBar.style.width = `${progress}%`;
+      elements.remainingAmount.textContent = remaining.toLocaleString();
+    } else {
+      elements.freeDeliveryBanner.classList.add('hidden');
+    }
+  }
+
+  // ========== GESTION DU STORAGE ==========
+  function saveCartToStorage() {
+    localStorage.setItem('biochar-cart', JSON.stringify(cart));
+  }
+
+  function loadCartFromStorage() {
+    const savedCart = localStorage.getItem('biochar-cart');
+    
+    if (savedCart) {
+      cart = JSON.parse(savedCart);
+    }
+    
+    updateCartUI();
+  }
+
+  // ========== COMMANDE ==========
+  function confirmOrder() {
+    if (cart.length === 0) {
+      showNotification('Veuillez ajouter des produits à votre commande.', 'error');
+      return;
+    }
+    
+    const { subtotal, delivery, total, hasFreeDelivery } = calculateTotals();
+    
+    let message = `📦 COMMANDE CONFIRMÉE\n\n`;
+    message += `Merci pour votre commande chez BioChar!\n\n`;
+    message += `Récapitulatif :\n`;
+    message += "─".repeat(30) + "\n";
+    
+    cart.forEach(item => {
+      message += `• ${item.product}\n`;
+      message += `  ${item.quantity} ${item.unit}(s) × ${item.price.toLocaleString()} Ar = ${item.total.toLocaleString()} Ar\n`;
+    });
+    
+    message += "─".repeat(30) + "\n";
+    message += `Sous-total : ${subtotal.toLocaleString()} Ar\n`;
+    
+    if (hasFreeDelivery) {
+      message += `Livraison : GRATUITE 🎉\n`;
+      message += `(offerte à partir de ${CONFIG.freeDeliveryThreshold.toLocaleString()} Ar)\n`;
+    } else {
+      message += `Livraison : ${delivery.toLocaleString()} Ar\n`;
+      message += `(ajoutez ${(CONFIG.freeDeliveryThreshold - subtotal).toLocaleString()} Ar pour la livraison gratuite)\n`;
+    }
+    
+    message += `\n💰 TOTAL : ${total.toLocaleString()} Ar\n\n`;
+    message += `💳 Méthodes de paiement : Airtel Money, Orange Money, Mvola\n\n`;
+    message += `📞 Un représentant vous contactera sous 24h pour finaliser la commande.\n`;
+    message += `📍 Zone de livraison : Mahajanga\n`;
+    message += `⏰ Livraison estimée : 24-48h\n`;
+    
+    if (confirm(message + '\n\nConfirmer la commande ?')) {
+      cart = [];
+      updateCartUI();
+      showNotification('Commande confirmée avec succès !', 'success');
+      
+      // Réinitialiser les quantités
+      document.querySelectorAll('.quantity-input').forEach(input => {
+        input.value = 0;
+      });
+    }
+  }
+
+  // ========== UI HELPERS ==========
+  function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+      ${type === 'success' ? '✅' : type === 'error' ? '❌' : '🚚'}
+      <span>${message}</span>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.style.opacity = '0';
+      notification.style.transform = 'translateY(20px)';
+      notification.style.transition = 'all 0.3s';
+      setTimeout(() => notification.remove(), 300);
+    }, 3000);
+  }
+
+  function updateCurrentYear() {
+    elements.currentYear.textContent = new Date().getFullYear();
+  }
+
+  function setupIntersectionObserver() {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+    document.querySelectorAll('h2').forEach(el => observer.observe(el));
+  }
+
+  function animateCards() {
+    setTimeout(() => {
+      document.querySelectorAll('.card').forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add('visible');
+        }, index * 200);
+      });
+    }, 500);
+  }
+
+  // ========== GESTION DES ÉVÉNEMENTS ==========
+  function setupEventListeners() {
+    // Contrôles de quantité
+    document.querySelectorAll('.quantity-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const productType = this.getAttribute('data-product');
+        const input = document.getElementById(`${productType}-qty`);
+        let value = parseInt(input.value);
+        
+        if (this.classList.contains('increase')) {
+          value++;
+        } else if (this.classList.contains('decrease') && value > 0) {
+          value--;
+        }
+        
+        input.value = value;
+        input.dispatchEvent(new Event('change'));
+      });
+    });
+
+    // Ajout au panier
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', function() {
+        const productName = this.getAttribute('data-product');
+        const productType = productName === 'Charbon en vrac' ? 'charbon-vrac' : 'sac-15kg';
+        const qtyInput = document.getElementById(`${productType}-qty`);
+        const quantity = parseInt(qtyInput.value);
+        
+        if (addToCart(productName, quantity)) {
+          qtyInput.value = 0;
+          if (cart.length === 1) {
+            elements.orderSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+
+    // Suppression d'articles
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('remove-item') || e.target.closest('.remove-item')) {
+        const button = e.target.classList.contains('remove-item') ? e.target : e.target.closest('.remove-item');
+        const index = parseInt(button.getAttribute('data-index'));
+        removeFromCart(index);
+      }
+    });
+
+    // Badge panier
+    elements.cartBadge.addEventListener('click', () => {
+      elements.orderSection.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Boutons d'action
+    elements.confirmOrderBtn.addEventListener('click', confirmOrder);
+    elements.clearCartBtn.addEventListener('click', clearCart);
+
+    // Liens footer
+    document.getElementById('contact-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      showNotification('Contact : biochar.contact@example.com | Tél: +261 XX XX XXX XX');
+    });
+
+    document.getElementById('faq-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      showNotification('FAQ : Livraison 24-48h | Paiement sécurisé | Qualité garantie');
+    });
+
+    // Validation des inputs
+    document.querySelectorAll('.quantity-input').forEach(input => {
+      input.addEventListener('change', function() {
+        if (this.value < 0) this.value = 0;
+        if (this.value > 999) this.value = 999;
+      });
+    });
+  }
+
+  // ========== LANCEMENT DE L'APPLICATION ==========
+  document.addEventListener('DOMContentLoaded', initializeApp);
+</script>
+
+</body>
+</html>
